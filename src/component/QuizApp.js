@@ -85,13 +85,13 @@ function QuizApp() {
 
   return (
     <>
-      <div className="bg-cyan-100 p-5 h-full">
-        <div className="font-semibold text-lg flex justify-center items-center">
-          <h1>
+      <div className="bg-gray-800 text-white p-5 h-full">
+        <div className="font-semibold text-base flex justify-center items-center">
+          <h1 className=" bg-red-600 px-5 p-1 rounded-full ">
             Questions {currentQuestion + 1}/{quizData.length}
           </h1>
         </div>
-        <div className="font-bold flex justify-center mt-5 text-2xl">
+        <div className="p-5 my-5 rounded border-red-600 border bg-gray-950 font-bold flex justify-center text-4xl ">
           <h1>{quizData[currentQuestion].question}</h1>
         </div>
         <div>
@@ -99,14 +99,14 @@ function QuizApp() {
             return (
               <div
                 key={x}
-                className="bg-blue-200 rounded mt-3 p-3 text-xl font-medium"
+                className=" rounded mt-3  text-xl font-medium"
               >
                 <div className="flex justify-center items-center">
                   <button
                     onClick={() =>
                       ansCheck(x, quizData[currentQuestion].correctAnswer)
                     }
-                    className="container"
+                    className="container bg-red-600 hover:bg-red-500 p-3"
                   >
                     {x}
                   </button>
@@ -115,6 +115,15 @@ function QuizApp() {
             );
           })}
         </div>
+          {editMode?
+          <button onClick={()=>{
+            if(quizData.length-1){
+              setEditMode(true)
+            }
+          }}>Restart</button>
+          :  
+          <button>Next</button>
+        }
       </div>
     </>
   );
